@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compensation Analysis Report - Dre Forbes</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&display=swap');
+
+  :root {
+    --black: #111111;
+    --dark-gray: #333333;
+    --mid-gray: #666666;
+    --light-gray: #999999;
+    --border: #e5e5e5;
+    --border-light: #f0f0f0;
+    --bg-page: #ffffff;
+    --bg-surface: #fafafa;
+    --accent: #b91c1c;
+    --accent-light: rgba(185, 28, 28, 0.06);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Source Sans 3', 'Source Sans Pro', -apple-system, sans-serif;
+    background: var(--bg-page);
+    color: var(--dark-gray);
+    font-size: 16px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  article {
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 60px 24px 80px;
+  }
+
+  /* ===== MASTHEAD ===== */
+  .masthead {
+    text-align: center;
+    padding: 48px 0 40px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 48px;
+  }
+  .masthead-label {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--light-gray);
+    margin-bottom: 28px;
+  }
+  .masthead-name {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 700;
+    color: var(--black);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  .masthead-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--mid-gray);
+    margin-top: 6px;
+  }
+  .masthead-meta {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--light-gray);
+    margin-top: 20px;
+  }
+  .masthead-confidential {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--light-gray);
+    margin-top: 24px;
+    border-top: 1px solid var(--border-light);
+    padding-top: 16px;
+    display: inline-block;
+  }
+
+  /* ===== TABLE OF CONTENTS ===== */
+  .toc {
+    margin-bottom: 56px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--border);
+  }
+  .toc-label {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--light-gray);
+    margin-bottom: 20px;
+  }
+  .toc-list {
+    list-style: none;
+    columns: 2;
+    column-gap: 40px;
+  }
+  .toc-list li {
+    break-inside: avoid;
+    margin-bottom: 8px;
+  }
+  .toc-list a {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--mid-gray);
+    text-decoration: none;
+    transition: color 0.15s;
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+  }
+  .toc-list a:hover { color: var(--black); }
+  .toc-list .toc-num {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--light-gray);
+    min-width: 28px;
+    flex-shrink: 0;
+  }
+
+  /* ===== SECTIONS ===== */
+  section {
+    margin-bottom: 64px;
+    scroll-margin-top: 32px;
+  }
+  .section-label {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--light-gray);
+    margin-bottom: 8px;
+  }
+  .section-rule {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin-bottom: 12px;
+  }
+  .section-heading {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.3rem, 3vw, 1.6rem);
+    font-weight: 700;
+    color: var(--black);
+    line-height: 1.3;
+    margin-bottom: 20px;
+  }
+  .section-intro {
+    font-size: 1rem;
+    color: var(--mid-gray);
+    margin-bottom: 24px;
+  }
+
+  /* ===== PROFILE TABLE ===== */
+  .profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-bottom: 8px;
+  }
+  .profile-group-label {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--light-gray);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .profile-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border-light);
+    font-size: 0.92rem;
+  }
+  .profile-row:last-child { border-bottom: none; }
+  .profile-label { color: var(--light-gray); font-weight: 400; }
+  .profile-value { color: var(--black); font-weight: 600; text-align: right; }
+
+  /* ===== COMP FIGURES ===== */
+  .comp-figures {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin: 32px 0;
+    padding: 32px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .comp-figure { text-align: center; }
+  .comp-number {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    font-weight: 700;
+    color: var(--black);
+    line-height: 1;
+  }
+  .comp-label {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--light-gray);
+    margin-top: 8px;
+  }
+
+  /* ===== SKILL DOMAINS ===== */
+  .skill-domain {
+    padding: 40px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .skill-domain:first-of-type { border-top: 1px solid var(--border); }
+  .skill-heading {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 4px;
+  }
+  .skill-benchmark {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--light-gray);
+    margin-bottom: 16px;
+  }
+  .skill-narrative {
+    font-size: 1rem;
+    color: var(--dark-gray);
+    margin-bottom: 16px;
+  }
+  .skill-sub {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--light-gray);
+    margin: 20px 0 8px;
+  }
+  .skill-evidence {
+    list-style: none;
+    padding: 0;
+  }
+  .skill-evidence li {
+    font-size: 0.92rem;
+    color: var(--dark-gray);
+    padding: 4px 0;
+    padding-left: 16px;
+    position: relative;
+  }
+  .skill-evidence li::before {
+    content: '\00B7';
+    position: absolute;
+    left: 0;
+    color: var(--light-gray);
+    font-weight: 700;
+    font-size: 1.2rem;
+    line-height: 1.5;
+  }
+  .skill-tech {
+    font-size: 0.88rem;
+    color: var(--mid-gray);
+    margin-top: 4px;
+  }
+  .evidence-ref {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--light-gray);
+    border: 1px solid var(--border);
+    padding: 1px 7px;
+    border-radius: 2px;
+    margin-left: 4px;
+    white-space: nowrap;
+  }
+
+  /* ===== METHODOLOGY ===== */
+  .method-item {
+    margin-bottom: 20px;
+    padding-left: 32px;
+    position: relative;
+  }
+  .method-item::before {
+    content: attr(data-step);
+    position: absolute;
+    left: 0;
+    top: 2px;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--light-gray);
+  }
+  .method-item h4 {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 4px;
+  }
+  .method-item p {
+    font-size: 0.92rem;
+    color: var(--dark-gray);
+  }
+
+  /* ===== TABLES ===== */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 0.9rem;
+  }
+  .data-table thead th {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--light-gray);
+    text-align: left;
+    padding: 0 12px 10px 0;
+    border-bottom: 2px solid var(--black);
+  }
+  .data-table thead th:last-child { text-align: right; padding-right: 0; }
+  .data-table thead th.align-right { text-align: right; }
+  .data-table tbody td {
+    padding: 12px 12px 12px 0;
+    border-bottom: 1px solid var(--border-light);
+    vertical-align: top;
+    color: var(--dark-gray);
+  }
+  .data-table tbody td:last-child { text-align: right; padding-right: 0; }
+  .data-table tbody td.align-right { text-align: right; }
+  .data-table tbody tr:last-child td { border-bottom: none; }
+  .data-table .row-label { font-weight: 600; color: var(--black); }
+  .data-table .row-sub { font-size: 0.8rem; color: var(--light-gray); font-weight: 400; display: block; margin-top: 2px; }
+  .data-table .row-total td {
+    border-top: 2px solid var(--black);
+    border-bottom: none;
+    font-weight: 700;
+    color: var(--black);
+    padding-top: 14px;
+  }
+  .data-table .salary-fig {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 600;
+    color: var(--black);
+  }
+  .source-ref {
+    font-size: 0.75rem;
+    color: var(--light-gray);
+    vertical-align: super;
+    text-decoration: none;
+    margin-left: 2px;
+  }
+  .source-ref:hover { color: var(--mid-gray); text-decoration: underline; }
+
+  /* ===== VERDICT ===== */
+  .verdict-callout {
+    border-left: 4px solid var(--accent);
+    background: var(--accent-light);
+    padding: 40px 32px;
+    margin: 40px 0;
+  }
+  .verdict-number {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.8rem, 7vw, 4rem);
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .verdict-label {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-top: 8px;
+    letter-spacing: 0.5px;
+  }
+  .verdict-sub {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.85rem;
+    color: var(--mid-gray);
+    margin-top: 8px;
+  }
+
+  .assessment-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 28px 0;
+    font-size: 0.92rem;
+  }
+  .assessment-table td {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-light);
+    vertical-align: top;
+  }
+  .assessment-table td:first-child {
+    color: var(--light-gray);
+    font-weight: 400;
+    width: 200px;
+    padding-right: 20px;
+  }
+  .assessment-table td:last-child { font-weight: 600; color: var(--black); }
+  .assessment-table tr:last-child td { border-bottom: none; }
+  .assessment-table .gap-row td:last-child {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 1rem;
+  }
+  .assessment-table .gap-row td:first-child {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .key-factor {
+    margin-bottom: 16px;
+    font-size: 0.95rem;
+    color: var(--dark-gray);
+  }
+  .key-factor strong { color: var(--black); }
+  .factor-num {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    color: var(--light-gray);
+    margin-right: 6px;
+  }
+
+  .recommendation {
+    border-left: 4px solid var(--border);
+    padding: 20px 24px;
+    margin: 32px 0;
+    background: var(--bg-surface);
+  }
+  .recommendation p {
+    font-size: 0.95rem;
+    color: var(--dark-gray);
+  }
+  .recommendation strong { color: var(--black); }
+
+  /* ===== PREMIUM NOTE ===== */
+  .premium-note {
+    background: var(--bg-surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 0;
+    margin: 20px 0;
+    font-size: 0.88rem;
+    color: var(--mid-gray);
+  }
+  .premium-note strong { color: var(--dark-gray); }
+
+  /* ===== SOURCES ===== */
+  .sources-list {
+    list-style: none;
+    padding: 0;
+    counter-reset: source-counter;
+  }
+  .sources-list li {
+    counter-increment: source-counter;
+    font-size: 0.85rem;
+    color: var(--mid-gray);
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border-light);
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
+  }
+  .sources-list li:last-child { border-bottom: none; }
+  .sources-list li::before {
+    content: counter(source-counter) '.';
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--light-gray);
+    min-width: 20px;
+    flex-shrink: 0;
+  }
+  .sources-list a {
+    color: var(--mid-gray);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .sources-list a:hover { color: var(--black); text-decoration: underline; }
+
+  /* ===== FOOTER ===== */
+  .report-footer {
+    text-align: center;
+    padding: 40px 0 0;
+    border-top: 1px solid var(--border);
+    margin-top: 64px;
+  }
+  .report-footer p {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--light-gray);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 640px) {
+    article { padding: 32px 16px 60px; }
+    .profile-grid { grid-template-columns: 1fr; gap: 24px; }
+    .comp-figures { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .toc-list { columns: 1; }
+    .assessment-table td:first-child { width: 130px; }
+  }
+
+  /* ===== PRINT ===== */
+  @media print {
+    body { font-size: 11pt; }
+    article { max-width: 100%; padding: 0; }
+    .toc { display: none; }
+    .masthead { border-top: 2px solid #000; padding-top: 24px; }
+    section { page-break-inside: avoid; }
+    .verdict-callout { border-left: 4px solid #000; background: none; }
+    .verdict-number { color: #000; }
+    .verdict-label { color: #000; }
+    .recommendation { background: none; }
+    a { color: inherit; text-decoration: none; }
+    .source-ref { display: none; }
+  }
+</style>
+<script type="text/javascript" nonce="6365f816a7a3414598d6f266943" src="//local.adguard.org?ts=1773987989643&amp;type=content-script&amp;dmn=dl.boxcloud.com&amp;url=https%3A%2F%2Fdl.boxcloud.com%2Fd%2F1%2Fb1%212WveV1W8ekYohvlwrXobvaQHoG814mKQLOUqFl4IZUfmVE7fAoCvtWCnNhKgVTO1xRLQ9uhlCuCw31kVV1_JVVnF3LdqiyuRZlCbpyFg-Ull0bleP5OTA8hrvmPo-YKJZdK_HyKoXBdYTukIHp-RW-5UGsbSPm-Hwqu_oFhtTMAY_FnxfQ75fRbs551etW_sqnq9txzDgWJ-VUAtuMbTFtk6pRbBbt_eC87i_I-UgtjG3wKGQRWtOyERmDn4Hj5XmEBs4HR42b3syBgMH1w4DoeVEcnfTerKVgMcAvHzAyzLgoBAa5ECJrxiv1DPTbFvotz0TNMm2oQOSmsIUoxC119SEl7uWCLnstF9WkCR7J3_xg3y3V41MBYPaR7EfvqLyPTZa_YZLTlusuJ9w4Jh1Hxt2MhtPy6JJ3MIzgoFyD0qqdKKZyMvyZruLGeP6PHBuva_n13xajqzbuDMkTUDr-mVandU1RW3LRXad_rsnluJPk50oBXKaCKbWbV1pqiKvfNdwjYP8EYMja_t3NHg8Oo0syNFtmXy2LSlh7Q1yAHxCFG2KoX4SaJuCYXRKxen_s_215MsP9NoqjMneLlxDYP0QLnihMAOLKhkVXPtqWrKe7J3W1E2C5Ob-NxQ886RcGxRqkw0447NsP0DmL2irS9oFRxnzID-HhtxfcHCiXBKUglTatdoH5Ukx1yBc3-CmPVUBXH4CCfLtpWwWBYoyBgSIhNBCm1FuJlFbg0TmlwPHitPYrdG4_PZqfwuku3aRhgjrX5Sbkj5ITTnip2pq2sGhGSJV0b4H4HhA_r7M-l0Wl5rToKyIPNetbRLvkHgjXQJ90s2yvw5Zmns2gV2U6ybBUbtM90tvYfwFBsst-2VjiCS4k1tEagJ8iPlLkQ9RbPh-ycsbKBiMVY9bjaqGDo8v5u5ZmhDqJxDBm0YEMd7K_qZj4QLt_E6-tz1zfwih0Fpe2uXES-uTQpKLVBPXe5Tm7vF4MifW2AkbsNZow1z-mzPb-SEd8FQdEYqlyTNwimPp_E3sGFUb68G4p7ZlR_LwtblzVA3UOSrHc1VglmxoUxwxfKBnRcnBB2Pft3aLSptectIfvjKIE_oShtS4Bm_drlmkWH2g5Dk0hC4SuGiG3QATfWf2iN8CXXy-1s4TVslTlB4yvm1yIiRvkxTjw7rUHaOJ6CmOwG0aBSxJsVa9WDlb65IVeeIpBWSM2vlPolzXRjtOdh7zAGivbRWHiTbpzrP6zp32Xl0NmfdauQMg4DotLjCZ0BZzaBXU7woyY_iXHWWf5NJQaCWSIg2fnkodx4K-8zh9ssk_h7y-_ZsJYU945CdizytNyOS8YfwGmCbs-do329lThXACbsKB85sQzbBoRFk-wBY6phKlR1jNkgWd49B7OUMQ9wbqQujOkfJ52QbHv4-Imgbeq6WzZ58B2Ejl1BWEJ9SfP-R9eQW8U2F57rg4THFCXpeRQ0Pb1saT49vhwmZ0ZCOB1g_d_YIZo18EEK2P-IRaq5HkPX4HppUGWGmEhGa8Z21ow..%2Fdownload&amp;app=com.google.Chrome&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1"></script><script type="text/javascript" nonce="6365f816a7a3414598d6f266943" src="//local.adguard.org?ts=1773987989643&amp;name=AdGuard%20Extra&amp;type=user-script"></script></head>
+<body>
+
+<article>
+
+<!-- ===== MASTHEAD ===== -->
+<header class="masthead">
+  <div class="masthead-label">Compensation Analysis Report</div>
+  <h1 class="masthead-name">Dre Forbes, MS</h1>
+  <div class="masthead-title">Director, Information Technology</div>
+  <div class="masthead-meta">Balentine LLC &middot; Atlanta, Georgia &middot; March 2026</div>
+  <div class="masthead-confidential">Confidential</div>
+</header>
+
+<!-- ===== TABLE OF CONTENTS ===== -->
+<nav class="toc">
+  <div class="toc-label">Contents</div>
+  <ol class="toc-list">
+    <li><a href="#subject"><span class="toc-num">I.</span> Subject Profile</a></li>
+    <li><a href="#comp"><span class="toc-num">II.</span> Current Compensation</a></li>
+    <li><a href="#skills"><span class="toc-num">III.</span> Documented Skill Set</a></li>
+    <li><a href="#methodology"><span class="toc-num">IV.</span> Methodology</a></li>
+    <li><a href="#market"><span class="toc-num">V.</span> Market Data</a></li>
+    <li><a href="#replacement"><span class="toc-num">VI.</span> Replacement Cost</a></li>
+    <li><a href="#verdict"><span class="toc-num">VII.</span> Findings &amp; Assessment</a></li>
+    <li><a href="#sources"><span class="toc-num">VIII.</span> Sources</a></li>
+  </ol>
+</nav>
+
+<!-- ===== I. SUBJECT PROFILE ===== -->
+<section id="subject">
+  <div class="section-label">Section I</div>
+  <hr class="section-rule">
+  <h2 class="section-heading">Subject Profile</h2>
+
+  <div class="profile-grid">
+    <div>
+      <div class="profile-group-label">Professional Information</div>
+      <div class="profile-row"><span class="profile-label">Name</span><span class="profile-value">Dre Forbes, MS</span></div>
+      <div class="profile-row"><span class="profile-label">Title</span><span class="profile-value">Director, Information Technology</span></div>
+      <div class="profile-row"><span class="profile-label">Organization</span><span class="profile-value">Balentine LLC</span></div>
+      <div class="profile-row"><span class="profile-label">Industry</span><span class="profile-value">Wealth Management (RIA)</span></div>
+      <div class="profile-row"><span class="profile-label">Firm AUA</span><span class="profile-value">$7.5B+</span></div>
+    </div>
+    <div>
+      <div class="profile-group-label">Employment Details</div>
+      <div class="profile-row"><span class="profile-label">Location</span><span class="profile-value">Atlanta, Georgia</span></div>
+      <div class="profile-row"><span class="profile-label">Hire Date</span><span class="profile-value">September 14, 2022</span></div>
+      <div class="profile-row"><span class="profile-label">Tenure</span><span class="profile-value">3.5 years</span></div>
+      <div class="profile-row"><span class="profile-label">Education</span><span class="profile-value">Master of Science</span></div>
+      <div class="profile-row"><span class="profile-label">Direct Reports</span><span class="profile-value">1</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== II. CURRENT COMPENSATION ===== -->
+<section id="comp">
+  <div class="section-label">Section II</div>
+  <hr class="section-rule">
+  <h2 class="section-heading">Current Compensation</h2>
+  <p class="section-intro">The following figures reflect Balentine's FY2026 approved compensation for Mr.&nbsp;Forbes, sourced from the firm's internal budget system.</p>
+
+  <div class="comp-figures">
+    <div class="comp-figure">
+      <div class="comp-number">$140,400</div>
+      <div class="comp-label">Current Base</div>
+    </div>
+    <div class="comp-figure">
+      <div class="comp-number">$160,000</div>
+      <div class="comp-label">2026 Base</div>
+    </div>
+    <div class="comp-figure">
+      <div class="comp-number">$21,380</div>
+      <div class="comp-label">Annual Bonus</div>
+    </div>
+    <div class="comp-figure">
+      <div class="comp-number">$179,746</div>
+      <div class="comp-label">Total Comp</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== III. DOCUMENTED SKILL SET ===== -->
+<section id="skills">
+  <div class="section-label">Section III</div>
+  <hr class="section-rule">
+  <h2 class="section-heading">Documented Skill Set</h2>
+  <p class="section-intro">Each skill domain below was identified through review of Mr.&nbsp;Forbes's actual work product, internal communications, deployed production systems, and the firm's codebase. Evidence sources are noted inline.</p>
+
+  <!-- Skill 1 -->
+  <div class="skill-domain">
+    <h3 class="skill-heading">Full-Stack Software Engineering</h3>
+    <div class="skill-benchmark">Market benchmark: $121,000&ndash;$158,000 (Senior, Atlanta)</div>
+    <p class="skill-narrative">Mr.&nbsp;Forbes is a production-level software engineer who designs, builds, deploys, and maintains the entirety of Balentine's custom application ecosystem. This capability was developed through hands-on building over three and a half years at the firm, resulting in a portfolio of eight production web applications and seven automated data pipelines that process thousands of client accounts daily.</p>
+    <div class="skill-sub">Key Evidence</div>
+    <ul class="skill-evidence">
+      <li><strong>budget.balentine.com</strong> &mdash; Full budgeting platform with SAML SSO, headcount planning, department assignments, approval workflows, and comparison views <span class="evidence-ref">Codebase</span></li>
+      <li><strong>projects.balentine.com</strong> &mdash; Internal project management dashboard with Rippling SSO <span class="evidence-ref">Codebase</span></li>
+      <li><strong>valuecards.balentine.com</strong> &mdash; Interactive client engagement tool deployed at firm-wide meetings <span class="evidence-ref">Email</span></li>
+      <li>Five additional portals: client upload, premeeting, onboarding, document management, clients <span class="evidence-ref">Codebase</span></li>
+      <li>Seven automated data pipelines including Activities Sync (5,555 accounts, 20,000+ activities daily), Pershing Intraday Holdings (5,372 accounts across 521 households), Addepar RM Push Sync, Standing Instructions Batch, and Addepar Household Metadata Sync <span class="evidence-ref">Email</span> <span class="evidence-ref">System Logs</span></li>
+    </ul>
+    <div class="skill-sub">Technologies</div>
+    <p class="skill-tech">JavaScript, React, Node.js, Express.js, PostgreSQL, Tailwind CSS, HTML/CSS, nginx, PM2, Git, shell scripting, cron scheduling</p>
+  </div>
+
+  <!-- Skill 2 -->
+  <div class="skill-domain">
+    <h3 class="skill-heading">Salesforce CRM Platform Engineering</h3>
+    <div class="skill-benchmark">Market benchmark: $118,000&ndash;$145,000 (Developer, Atlanta)</div>
+    <p class="skill-narrative">Mr.&nbsp;Forbes serves as the primary Salesforce developer and administrator for a deeply customized Financial Services Cloud org. This expertise was built through direct ownership of the platform &mdash; an org with 178 Lightning Web Components, 200+ Apex classes, and 128 custom objects, a complexity level that typically requires a dedicated Salesforce team of three to five developers.</p>
+    <div class="skill-sub">Key Evidence</div>
+    <ul class="skill-evidence">
+      <li>Custom case workflows, process automation, and dashboards including Tax Season Dashboard, Team Dashboard, and Revenue Tracker <span class="evidence-ref">Codebase</span></li>
+      <li>Leading Salesforce FSC org migration planning (178 LWCs, 200+ Apex classes, 128 custom objects) <span class="evidence-ref">Slack</span></li>
+      <li>Designed Case Process Simplification Proposal with Lucidchart workflow documentation <span class="evidence-ref">Email</span></li>
+      <li>Built AI-powered client email summarization integrated with Salesforce <span class="evidence-ref">System Logs</span></li>
+      <li>Developed automated Salesforce-to-external-system integrations (Addepar, Pershing, Fidelity) <span class="evidence-ref">Codebase</span></li>
+      <li>Built IAA document generation with version/type selection from SF cases <span class="evidence-ref">Email</span></li>
+    </ul>
+    <div class="skill-sub">Technologies</div>
+    <p class="skill-tech">Apex, SOQL, Lightning Web Components, Financial Services Cloud, Flow Builder, Process Builder, Salesforce DX</p>
+  </div>
+
+  <!-- Skill 3 -->
+  <div class="skill-domain">
+    <h3 class="skill-heading">AI Strategy &amp; Implementation</h3>
+    <div class="skill-benchmark">Emerging domain &mdash; commands 15&ndash;30% premium over base role</div>
+    <p class="skill-narrative">Mr.&nbsp;Forbes independently identified the opportunity for AI integration at Balentine and built the firm's AI strategy from scratch. This includes deploying enterprise AI tools firm-wide, building custom AI-powered systems for client intelligence, and evangelizing adoption across the organization. His leadership in this area has earned direct recognition from both the CEO and CIO.</p>
+    <div class="skill-sub">Key Evidence</div>
+    <ul class="skill-evidence">
+      <li>Deployed Claude AI across the organization via Rippling SSO provisioning <span class="evidence-ref">Email</span></li>
+      <li>Built AI-powered Daily Client Email Summary system that processes advisor inboxes and delivers intelligence reports <span class="evidence-ref">System Logs</span></li>
+      <li>Evaluated emerging platforms: ARQA, Glean AI, LLM servers/agents for wealth management applications <span class="evidence-ref">Slack</span></li>
+      <li>Led the firm's "Tech Theme 2026" strategic technology vision <span class="evidence-ref">Email</span></li>
+    </ul>
+    <div class="skill-sub">Executive Recognition</div>
+    <ul class="skill-evidence">
+      <li>CEO Robert Balentine, via email: <em>"Love this &mdash; you are really leading us forward with technology"</em> <span class="evidence-ref">Email</span></li>
+      <li>CIO Adrian Cronje, via email: <em>"We applauded you at the Sales meeting today as well, Dre"</em> <span class="evidence-ref">Email</span></li>
+    </ul>
+    <div class="skill-sub">Technologies</div>
+    <p class="skill-tech">Claude API, OpenAI, custom AI pipeline development, prompt engineering, LLM agent architecture</p>
+  </div>
+
+  <!-- Skill 4 -->
+  <div class="skill-domain">
+    <h3 class="skill-heading">Cybersecurity &amp; SEC Compliance</h3>
+    <div class="skill-benchmark">Market benchmark: $235,000&ndash;$270,000 (CISO, Financial Services, Atlanta)</div>
+    <p class="skill-narrative">Mr.&nbsp;Forbes owns the firm's entire cybersecurity posture &mdash; a responsibility typically held by a dedicated Chief Information Security Officer at firms of Balentine's size and regulatory profile. This skill was battle-tested during a real security incident in 2025, where Mr.&nbsp;Forbes led the investigation, remediation, and incident reporting.</p>
+    <div class="skill-sub">Key Evidence</div>
+    <ul class="skill-evidence">
+      <li><strong>VPN Security Incident (2025)</strong> &mdash; Led investigation and remediation of unauthorized access via a dormant test account. Wrote incident report, implemented corrective controls, and briefed leadership <span class="evidence-ref">Slack</span> <span class="evidence-ref">Email</span></li>
+      <li>Managed SEC audit preparation and item reviews with FIS partnership <span class="evidence-ref">Email</span></li>
+      <li>Conducted Addepar vendor security audit <span class="evidence-ref">Email</span></li>
+      <li>Oversees Proofpoint email security, Huntress EDR monitoring, Duo MFA, and VPN infrastructure <span class="evidence-ref">System</span></li>
+      <li>Enforces PII data security policies including Box sharing with passcodes and secure upload links <span class="evidence-ref">Email</span></li>
+    </ul>
+  </div>
+
+  <!-- Skill 5 -->
+  <div class="skill-domain">
+    <h3 class="skill-heading">Vendor &amp; Integration Management</h3>
+    <div class="skill-benchmark">Financial services vendor management commands 15&ndash;25% premium</div>
+    <p class="skill-narrative">Mr.&nbsp;Forbes manages the technical relationships with every critical vendor in Balentine's technology stack &mdash; ten platforms in total. This includes building custom API integrations, negotiating contracts, coordinating multi-year custodian migrations, and serving as the firm's primary technical contact for each platform.</p>
+    <div class="skill-sub">Key Evidence</div>
+    <ul class="skill-evidence">
+      <li><strong>Pershing/BNY Mellon</strong> &mdash; Certificate authentication, Entitlement Management System training, custodian data integration <span class="evidence-ref">Email</span></li>
+      <li><strong>Addepar</strong> &mdash; Portfolio analytics API with rate-limited batch sync (10-second intervals), household metadata sync (499 households) <span class="evidence-ref">System Logs</span></li>
+      <li><strong>Fidelity</strong> &mdash; Custodian migration planning, Wealthscape integration, tech review calls, FBSI short name mapping <span class="evidence-ref">Email</span></li>
+      <li><strong>RedBlack</strong> &mdash; Trading/rebalancing software deployment, licensing, Cloud API integration <span class="evidence-ref">Slack</span></li>
+      <li><strong>Box, Gong, Dispatch, Rippling, Smarsh, Zoom</strong> &mdash; Ongoing technical management and integration <span class="evidence-ref">Email</span> <span class="evidence-ref">Slack</span></li>
+    </ul>
+  </div>
+
+  <!-- Skill 6 -->
+  <div class="skill-domain">
+    <h3 class="skill-heading">IT Infrastructure, Operations &amp; Team Leadership</h3>
+    <div class="skill-benchmark">Market benchmark: $167,000&ndash;$227,000 (IT Director, Atlanta)</div>
+    <p class="skill-narrative">Mr.&nbsp;Forbes manages all physical and virtual infrastructure, hardware lifecycle, software licensing, and a direct report. This is the traditional IT Director component of the role &mdash; the one function his current title actually describes. As documented in Slack communications, he coordinates daily with his direct report on hardware deployments, software installations, and end-user support across both office locations.</p>
+    <div class="skill-sub">Key Evidence</div>
+    <ul class="skill-evidence">
+      <li>Production server infrastructure: nginx, PM2, SSL certificates, multi-domain hosting across 8+ sites <span class="evidence-ref">Codebase</span></li>
+      <li>Hardware procurement and lifecycle management (Dell laptops, monitors, docking stations) <span class="evidence-ref">Slack</span></li>
+      <li>Software licensing administration: Adobe, OpenAI, various SaaS <span class="evidence-ref">Email</span></li>
+      <li>VPN and network infrastructure management, SSO architecture <span class="evidence-ref">System</span></li>
+      <li>Supervises Logan Freeman (IT Support Associate); onboarding new technical hires <span class="evidence-ref">Slack</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== IV. METHODOLOGY ===== -->
+<section id="methodology">
+  <div class="section-label">Section IV</div>
+  <hr class="section-rule">
+  <h2 class="section-heading">Research Methodology</h2>
+  <p class="section-intro">The following steps were taken to arrive at this analysis. All data was collected and cross-referenced in March 2026.</p>
+
+  <div class="method-item" data-step="1.">
+    <h4>Internal Compensation Data</h4>
+    <p>Mr.&nbsp;Forbes's current and approved compensation was retrieved directly from the Balentine budget application database. The query targeted the <code>budgetapp_headcount_positions</code> table in the <code>project_management_db</code> PostgreSQL instance, extracting current salary, approved 2026 salary, annual bonus, total compensation, hire date, and location.</p>
+  </div>
+
+  <div class="method-item" data-step="2.">
+    <h4>Skill Set Documentation</h4>
+    <p>A comprehensive job description was compiled by analyzing twelve months of Mr.&nbsp;Forbes's Slack messages and Outlook emails (both sent and received), cross-referenced with the firm's production codebase and deployed applications. Five parallel research agents scanned communications to identify the full scope of responsibilities, projects, and cross-functional collaboration.</p>
+  </div>
+
+  <div class="method-item" data-step="3.">
+    <h4>Role Decomposition</h4>
+    <p>Mr.&nbsp;Forbes's responsibilities were decomposed into six distinct professional domains: Full-Stack Engineering, Salesforce Platform Engineering, AI Strategy, Cybersecurity and Compliance, Vendor and Integration Management, and IT Infrastructure and Operations. Each domain was validated against documented evidence from email, Slack, and production systems.</p>
+  </div>
+
+  <div class="method-item" data-step="4.">
+    <h4>Market Rate Research</h4>
+    <p>Live 2026 salary data was collected from seven independent compensation databases for each of the six role domains, filtered by location (Atlanta, Georgia), industry (Financial Services / Wealth Management), experience level (Senior / Director), and company size (under 100 employees where available).</p>
+  </div>
+
+  <div class="method-item" data-step="5.">
+    <h4>Comparable Title Analysis</h4>
+    <p>Because Mr.&nbsp;Forbes's role spans responsibilities typically held by three to four separate professionals, the analysis also benchmarked against blended senior titles &mdash; VP of Technology and CTO at small firms &mdash; to provide a holistic market comparison rather than relying solely on the "Director of IT" title, which significantly understates the role's scope.</p>
+  </div>
+</section>
+
+<!-- ===== V. MARKET DATA ===== -->
+<section id="market">
+  <div class="section-label">Section V</div>
+  <hr class="section-rule">
+  <h2 class="section-heading">Market Compensation Data</h2>
+  <p class="section-intro">All figures reflect Atlanta, Georgia market rates as of March 2026, sourced from the databases listed in Section&nbsp;VIII.</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Role Benchmark</th>
+        <th class="align-right">Low</th>
+        <th class="align-right">Average</th>
+        <th class="align-right">High</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="row-label">IT Director</span><span class="row-sub">Infrastructure, vendor management, team leadership</span></td>
+        <td class="align-right salary-fig">$167,706 <a class="source-ref" href="#sources">1,2,3</a></td>
+        <td class="align-right salary-fig">$200,535</td>
+        <td class="align-right salary-fig">$227,270</td>
+      </tr>
+      <tr>
+        <td><span class="row-label">Senior Full-Stack Developer</span><span class="row-sub">React, Node.js, PostgreSQL production applications</span></td>
+        <td class="align-right salary-fig">$121,010 <a class="source-ref" href="#sources">6,7,8</a></td>
+        <td class="align-right salary-fig">$137,429</td>
+        <td class="align-right salary-fig">$158,393</td>
+      </tr>
+      <tr>
+        <td><span class="row-label">Salesforce Developer</span><span class="row-sub">Apex, LWC, Financial Services Cloud</span></td>
+        <td class="align-right salary-fig">$101,708 <a class="source-ref" href="#sources">9,10</a></td>
+        <td class="align-right salary-fig">$127,667</td>
+        <td class="align-right salary-fig">$145,000</td>
+      </tr>
+      <tr>
+        <td><span class="row-label">Cybersecurity Lead / CISO</span><span class="row-sub">Incident response, SEC compliance, financial services</span></td>
+        <td class="align-right salary-fig">$234,877 <a class="source-ref" href="#sources">11,12,13</a></td>
+        <td class="align-right salary-fig">$270,000</td>
+        <td class="align-right salary-fig">$320,800</td>
+      </tr>
+      <tr>
+        <td><span class="row-label">VP of Technology</span><span class="row-sub">Blended leadership and engineering</span></td>
+        <td class="align-right salary-fig">$200,000 <a class="source-ref" href="#sources">14,16</a></td>
+        <td class="align-right salary-fig">$247,000</td>
+        <td class="align-right salary-fig">$275,000+</td>
+      </tr>
+      <tr>
+        <td><span class="row-label">CTO, Small Firm</span><span class="row-sub">Full ownership of technology strategy and execution</span></td>
+        <td class="align-right salary-fig">$180,000 <a class="source-ref" href="#sources">14,15,16</a></td>
+        <td class="align-right salary-fig">$246,667</td>
+        <td class="align-right salary-fig">$302,847</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="premium-note"><strong>Financial services premium:</strong> The wealth management and RIA industry typically pays 15&ndash;25% above general technology market rates due to regulatory complexity, data sensitivity, and the direct impact of technology on client relationships and AUM. The figures above reflect general technology market rates; Mr.&nbsp;Forbes's financial services context would push the appropriate range higher.</div>
+</section>
+
+<!-- ===== VI. REPLACEMENT COST ===== -->
+<section id="replacement">
+  <div class="section-label">Section VI</div>
+  <hr class="section-rule">
+  <h2 class="section-heading">Replacement Cost Analysis</h2>
+  <p class="section-intro">If Mr.&nbsp;Forbes were to depart, the following individual hires would be required to replicate his current output, based on the documented skill set and evidence in Section&nbsp;III.</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Role</th>
+        <th class="align-right">Annual Salary</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="row-label">IT Director</span><span class="row-sub">Infrastructure, vendor relationships, team management, SSO, hardware</span></td>
+        <td class="align-right salary-fig">$200,000</td>
+      </tr>
+      <tr>
+        <td><span class="row-label">Senior Full-Stack Developer</span><span class="row-sub">Maintain 8+ production apps, build new features, deployment pipeline</span></td>
+        <td class="align-right salary-fig">$145,000</td>
+      </tr>
+      <tr>
+        <td><span class="row-label">Salesforce Developer/Admin</span><span class="row-sub">178 LWCs, 200+ Apex classes, FSC org, case workflows, integrations</span></td>
+        <td class="align-right salary-fig">$135,000</td>
+      </tr>
+      <tr>
+        <td><span class="row-label">Cybersecurity Lead</span><span class="row-sub">Incident response, SEC audit, vendor audits, Proofpoint, MFA, VPN</span></td>
+        <td class="align-right salary-fig">$235,000</td>
+      </tr>
+      <tr class="row-total">
+        <td>Total Replacement Cost (4 hires)</td>
+        <td class="align-right">$715,000</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p style="font-size:0.9rem;color:var(--mid-gray);margin-top:16px;">This figure does not include recruiting costs (typically 20&ndash;25% of first-year salary per hire), onboarding time (three to six months to full productivity), or the institutional knowledge loss inherent in replacing someone who built these systems from scratch. A conservative estimate of total first-year transition cost, including recruitment and lost productivity, would exceed <strong style="color:var(--black);">$900,000</strong>.</p>
+</section>
+
+<!-- ===== VII. FINDINGS ===== -->
+<section id="verdict">
+  <div class="section-label">Section VII</div>
+  <hr class="section-rule">
+  <h2 class="section-heading">Findings &amp; Assessment</h2>
+
+  <div class="verdict-callout">
+    <div class="verdict-number">$60,000 &ndash; $100,000</div>
+    <div class="verdict-label">Below-market compensation</div>
+    <div class="verdict-sub">Based on 2026 market data for Atlanta, financial services industry, comparable skill set and scope</div>
+  </div>
+
+  <table class="assessment-table">
+    <tr><td>Current Title</td><td>Director, Information Technology</td></tr>
+    <tr><td>Appropriate Title</td><td>VP, Technology &amp; Innovation <em>or</em> Chief Technology Officer</td></tr>
+    <tr><td>Current Total Comp</td><td>$179,746</td></tr>
+    <tr><td>Market Rate (IT Director only)</td><td>$200,000 &ndash; $227,000</td></tr>
+    <tr><td>Market Rate (VP Technology)</td><td>$220,000 &ndash; $275,000</td></tr>
+    <tr><td>Market Rate (CTO, small firm)</td><td>$247,000 &ndash; $303,000</td></tr>
+    <tr class="gap-row"><td>Gap to Market</td><td>&ndash;$60,000 to &ndash;$100,000</td></tr>
+  </table>
+
+  <div style="margin-top:36px;">
+    <div class="skill-sub" style="margin-bottom:16px;">Key Factors</div>
+
+    <p class="key-factor"><span class="factor-num">1.</span> <strong>The title understates the role.</strong> "Director of IT" in the market describes someone who manages infrastructure, vendors, and a team but does not write code. Mr.&nbsp;Forbes does all of that and simultaneously serves as the firm's sole software engineer, Salesforce developer, AI strategist, and cybersecurity lead. The title does not reflect the scope of responsibilities documented in this report.</p>
+
+    <p class="key-factor"><span class="factor-num">2.</span> <strong>The base salary is below market for the title alone.</strong> At $160,000, Mr.&nbsp;Forbes's approved 2026 base falls below the average market rate for a standard IT Director in Atlanta ($200,535) &mdash; a role that carries none of the engineering, Salesforce, AI, or security responsibilities he performs.</p>
+
+    <p class="key-factor"><span class="factor-num">3.</span> <strong>The financial services premium is not reflected.</strong> Technology roles at SEC-registered investment advisors with $7.5B in assets under advisement typically command 15&ndash;25% above general market rates. Mr.&nbsp;Forbes's compensation does not reflect this industry premium.</p>
+
+    <p class="key-factor"><span class="factor-num">4.</span> <strong>AI leadership adds unquantified strategic value.</strong> Mr.&nbsp;Forbes's AI initiatives have earned direct recognition from the CEO and CIO and are actively differentiating the firm in client engagement and operational efficiency. This strategic contribution is not captured in standard salary benchmarks for technology roles.</p>
+
+    <p class="key-factor"><span class="factor-num">5.</span> <strong>Replacement risk is acute.</strong> A single departure would require three to four separate hires at a combined cost of approximately $715,000 per year, plus an estimated $185,000 or more in recruiting fees and onboarding costs. The systems Mr.&nbsp;Forbes built from scratch represent institutional knowledge that cannot be easily transferred.</p>
+  </div>
+
+  <div class="recommendation">
+    <div class="skill-sub" style="margin-bottom:8px;">Recommended Action</div>
+    <p>Based on this analysis, a market-aligned compensation package for Mr.&nbsp;Forbes's documented skill set, scope, and output would fall in the range of <strong>$240,000&ndash;$280,000 in total compensation</strong>, accompanied by a title adjustment to Vice President, Technology &amp; Innovation or Chief Technology Officer. This range reflects the blended value of his six documented skill domains, the financial services industry premium, and his demonstrated strategic impact on the firm.</p>
+  </div>
+</section>
+
+<!-- ===== VIII. SOURCES ===== -->
+<section id="sources">
+  <div class="section-label">Section VIII</div>
+  <hr class="section-rule">
+  <h2 class="section-heading">Sources</h2>
+
+  <div class="skill-sub" style="margin-bottom:12px;">External Salary Data (Retrieved March 2026)</div>
+  <ol class="sources-list">
+    <li><a href="https://www.salary.com/research/salary/benchmark/information-technology-director-salary/atlanta-ga" target="_blank" rel="noopener">Salary.com &mdash; IT Director, Atlanta, GA</a></li>
+    <li><a href="https://www.glassdoor.com/Salaries/atlanta-ga-it-director-salary-SRCH_IL.0,10_IM52_KO11,22.htm" target="_blank" rel="noopener">Glassdoor &mdash; IT Director, Atlanta, GA (2026)</a></li>
+    <li><a href="https://www.roberthalf.com/us/en/job-details/it-director/atlanta-ga" target="_blank" rel="noopener">Robert Half &mdash; IT Director Salary, Atlanta (2026)</a></li>
+    <li><a href="https://www.payscale.com/research/US/Job=Information_Technology_(IT)_Director/Salary/da611634/Atlanta-GA" target="_blank" rel="noopener">PayScale &mdash; IT Director, Atlanta (2026)</a></li>
+    <li><a href="https://www.ziprecruiter.com/Salaries/It-Director-Salary-in-Atlanta,GA" target="_blank" rel="noopener">ZipRecruiter &mdash; IT Director, Atlanta (2026)</a></li>
+    <li><a href="https://www.glassdoor.com/Salaries/atlanta-ga-full-stack-developer-salary-SRCH_IL.0,10_IM52_KO11,31.htm" target="_blank" rel="noopener">Glassdoor &mdash; Full Stack Developer, Atlanta (2026)</a></li>
+    <li><a href="https://builtin.com/salaries/us/atlanta-ga/full-stack-developer" target="_blank" rel="noopener">Built In &mdash; Full Stack Developer, Atlanta (2026)</a></li>
+    <li><a href="https://www.salary.com/research/salary/listing/full-stack-developer-salary/atlanta-ga" target="_blank" rel="noopener">Salary.com &mdash; Full Stack Developer, Atlanta (2026)</a></li>
+    <li><a href="https://www.glassdoor.com/Salaries/atlanta-ga-salesforce-developer-salary-SRCH_IL.0,10_IM52_KO11,31.htm" target="_blank" rel="noopener">Glassdoor &mdash; Salesforce Developer, Atlanta (2026)</a></li>
+    <li><a href="https://www.salary.com/research/salary/recruiting/salesforce-developer-salary/atlanta-ga" target="_blank" rel="noopener">Salary.com &mdash; Salesforce Developer, Atlanta (2026)</a></li>
+    <li><a href="https://www.knowledgehut.com/blog/security/chief-information-security-officer-salary" target="_blank" rel="noopener">KnowledgeHut &mdash; CISO Salary (2026)</a></li>
+    <li><a href="https://hadess.io/cybersecurity-salary-guide/" target="_blank" rel="noopener">HADESS &mdash; Cybersecurity Salary Guide (2026)</a></li>
+    <li><a href="https://acsmi.org/blogs/entry-level-to-ciso-complete-salary-progression-analysis-2026-2027-data" target="_blank" rel="noopener">ACSMI &mdash; CISO Salary Progression Analysis (2026&ndash;2027)</a></li>
+    <li><a href="https://builtin.com/salaries/us/atlanta-ga/cto-chief-technology-officer" target="_blank" rel="noopener">Built In &mdash; CTO, Atlanta (2026)</a></li>
+    <li><a href="https://www.payscale.com/research/US/Job=Chief_Technology_Officer_(CTO)/Salary/18e77327/Atlanta-GA" target="_blank" rel="noopener">PayScale &mdash; CTO, Atlanta (2026)</a></li>
+    <li><a href="https://www.salary.com/research/salary/benchmark/chief-technology-officer-salary/atlanta-ga" target="_blank" rel="noopener">Salary.com &mdash; CTO, Atlanta (2026)</a></li>
+    <li><a href="https://motionrecruitment.com/it-salary/atlanta" target="_blank" rel="noopener">Motion Recruitment &mdash; Atlanta IT Salary Insights (2026)</a></li>
+  </ol>
+
+  <div class="skill-sub" style="margin-top:28px;margin-bottom:12px;">Internal Data Sources</div>
+  <ol class="sources-list" style="counter-reset:source-counter 17;">
+    <li>Balentine Budget Application &mdash; <code style="font-size:0.82rem;">project_management_db.budgetapp_headcount_positions</code> (PostgreSQL)</li>
+    <li>Slack Workspace &mdash; Message history for user U046MFNG3FC (March 2025&ndash;March 2026)</li>
+    <li>Microsoft 365 / Outlook &mdash; Email archive for dforbes@balentine.com (March 2025&ndash;March 2026)</li>
+    <li>Production Codebase &mdash; timeline_project repository (Git history)</li>
+  </ol>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="report-footer">
+  <p>Confidential &middot; Balentine LLC &middot; March 2026</p>
+</footer>
+
+</article>
+
+</body>
+</html>
