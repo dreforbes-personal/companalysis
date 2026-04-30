@@ -5,20 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Compensation Analysis Report - Dre Forbes</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap');
 
   :root {
-    --black: #111111;
-    --dark-gray: #333333;
-    --mid-gray: #666666;
-    --light-gray: #999999;
-    --border: #e5e5e5;
-    --border-light: #f0f0f0;
-    --bg-page: #ffffff;
-    --bg-surface: #fafafa;
-    --accent: #b91c1c;
-    --accent-light: rgba(185, 28, 28, 0.06);
+    /* Showcase palette */
+    --bg: #F4F5F7;
+    --surface: #FFFFFF;
+    --surface-2: #ECEDF2;
+    --text: #141422;
+    --text-secondary: #4a4a64;
+    --text-muted: #8a8aa0;
+    /* Compat shims so the rest of the CSS reads the same names */
+    --black: #141422;
+    --dark-gray: #2a2a3a;
+    --mid-gray: #4a4a64;
+    --light-gray: #8a8aa0;
+    --border: rgba(0,0,0,0.09);
+    --border-light: rgba(0,0,0,0.06);
+    --bg-page: #F4F5F7;
+    --bg-surface: #FFFFFF;
+    --accent: #3B5EC9;
+    --accent-light: rgba(59, 94, 201, 0.08);
   }
 
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,12 +33,20 @@
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: 'Source Sans 3', 'Source Sans Pro', -apple-system, sans-serif;
-    background: var(--bg-page);
-    color: var(--dark-gray);
+    font-family: 'Manrope', sans-serif;
+    background: var(--bg);
+    background-image: radial-gradient(circle, rgba(0,0,0,0.04) 1px, transparent 1px);
+    background-size: 24px 24px;
+    color: var(--text);
     font-size: 16px;
     line-height: 1.75;
     -webkit-font-smoothing: antialiased;
+  }
+  article {
+    background: rgba(255,255,255,0.55);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    border-radius: 14px;
   }
 
   article {
@@ -49,7 +64,7 @@
     margin-bottom: 48px;
   }
   .masthead-label {
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 4px;
@@ -58,7 +73,7 @@
     margin-bottom: 28px;
   }
   .masthead-name {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Instrument Serif', Georgia, serif;
     font-size: clamp(2rem, 5vw, 2.8rem);
     font-weight: 700;
     color: var(--black);
@@ -66,7 +81,7 @@
     line-height: 1.15;
   }
   .masthead-title {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Instrument Serif', Georgia, serif;
     font-size: clamp(1rem, 2.5vw, 1.3rem);
     font-weight: 400;
     font-style: italic;
@@ -74,14 +89,14 @@
     margin-top: 6px;
   }
   .masthead-meta {
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: 'Manrope', sans-serif;
     font-size: 0.85rem;
     font-weight: 400;
     color: var(--light-gray);
     margin-top: 20px;
   }
   .masthead-confidential {
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 2px;
@@ -100,7 +115,7 @@
     border-bottom: 1px solid var(--border);
   }
   .toc-label {
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 4px;
@@ -118,7 +133,7 @@
     margin-bottom: 8px;
   }
   .toc-list a {
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: 'Manrope', sans-serif;
     font-size: 0.95rem;
     font-weight: 400;
     color: var(--mid-gray);
@@ -143,7 +158,7 @@
     scroll-margin-top: 32px;
   }
   .section-label {
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 3px;
@@ -157,7 +172,7 @@
     margin-bottom: 12px;
   }
   .section-heading {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Instrument Serif', Georgia, serif;
     font-size: clamp(1.3rem, 3vw, 1.6rem);
     font-weight: 700;
     color: var(--black);
@@ -178,7 +193,7 @@
     margin-bottom: 8px;
   }
   .profile-group-label {
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 2px;
@@ -211,14 +226,14 @@
   }
   .comp-figure { text-align: center; }
   .comp-number {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Instrument Serif', Georgia, serif;
     font-size: clamp(1.6rem, 3.5vw, 2.2rem);
     font-weight: 700;
     color: var(--black);
     line-height: 1;
   }
   .comp-label {
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 0.75rem;
     font-weight: 500;
     letter-spacing: 1px;
@@ -234,14 +249,14 @@
   }
   .skill-domain:first-of-type { border-top: 1px solid var(--border); }
   .skill-heading {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Instrument Serif', Georgia, serif;
     font-size: 1.2rem;
     font-weight: 700;
     color: var(--black);
     margin-bottom: 4px;
   }
   .skill-benchmark {
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: 'Manrope', sans-serif;
     font-size: 0.88rem;
     font-weight: 400;
     font-style: italic;
@@ -254,7 +269,7 @@
     margin-bottom: 16px;
   }
   .skill-sub {
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 0.72rem;
     font-weight: 600;
     letter-spacing: 2px;
@@ -309,13 +324,13 @@
     position: absolute;
     left: 0;
     top: 2px;
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Instrument Serif', Georgia, serif;
     font-size: 1rem;
     font-weight: 600;
     color: var(--light-gray);
   }
   .method-item h4 {
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: 'Manrope', sans-serif;
     font-size: 0.95rem;
     font-weight: 700;
     color: var(--black);
@@ -334,7 +349,7 @@
     font-size: 0.9rem;
   }
   .data-table thead th {
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 1.5px;
@@ -365,7 +380,7 @@
     padding-top: 14px;
   }
   .data-table .salary-fig {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Instrument Serif', Georgia, serif;
     font-weight: 600;
     color: var(--black);
   }
@@ -386,7 +401,7 @@
     margin: 40px 0;
   }
   .verdict-number {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Instrument Serif', Georgia, serif;
     font-size: clamp(2.8rem, 7vw, 4rem);
     font-weight: 800;
     color: var(--accent);
@@ -394,7 +409,7 @@
     letter-spacing: -0.02em;
   }
   .verdict-label {
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: 'Manrope', sans-serif;
     font-size: 1rem;
     font-weight: 600;
     color: var(--accent);
@@ -402,7 +417,7 @@
     letter-spacing: 0.5px;
   }
   .verdict-sub {
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: 'Manrope', sans-serif;
     font-size: 0.85rem;
     color: var(--mid-gray);
     margin-top: 8px;
@@ -444,7 +459,7 @@
   }
   .key-factor strong { color: var(--black); }
   .factor-num {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Instrument Serif', Georgia, serif;
     font-weight: 700;
     color: var(--light-gray);
     margin-right: 6px;
@@ -514,7 +529,7 @@
     margin-top: 64px;
   }
   .report-footer p {
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 0.75rem;
     font-weight: 500;
     letter-spacing: 2px;
@@ -546,7 +561,7 @@
     .source-ref { display: none; }
   }
 </style>
-<script type="text/javascript" nonce="6365f816a7a3414598d6f266943" src="//local.adguard.org?ts=1773987989643&amp;type=content-script&amp;dmn=dl.boxcloud.com&amp;url=https%3A%2F%2Fdl.boxcloud.com%2Fd%2F1%2Fb1%212WveV1W8ekYohvlwrXobvaQHoG814mKQLOUqFl4IZUfmVE7fAoCvtWCnNhKgVTO1xRLQ9uhlCuCw31kVV1_JVVnF3LdqiyuRZlCbpyFg-Ull0bleP5OTA8hrvmPo-YKJZdK_HyKoXBdYTukIHp-RW-5UGsbSPm-Hwqu_oFhtTMAY_FnxfQ75fRbs551etW_sqnq9txzDgWJ-VUAtuMbTFtk6pRbBbt_eC87i_I-UgtjG3wKGQRWtOyERmDn4Hj5XmEBs4HR42b3syBgMH1w4DoeVEcnfTerKVgMcAvHzAyzLgoBAa5ECJrxiv1DPTbFvotz0TNMm2oQOSmsIUoxC119SEl7uWCLnstF9WkCR7J3_xg3y3V41MBYPaR7EfvqLyPTZa_YZLTlusuJ9w4Jh1Hxt2MhtPy6JJ3MIzgoFyD0qqdKKZyMvyZruLGeP6PHBuva_n13xajqzbuDMkTUDr-mVandU1RW3LRXad_rsnluJPk50oBXKaCKbWbV1pqiKvfNdwjYP8EYMja_t3NHg8Oo0syNFtmXy2LSlh7Q1yAHxCFG2KoX4SaJuCYXRKxen_s_215MsP9NoqjMneLlxDYP0QLnihMAOLKhkVXPtqWrKe7J3W1E2C5Ob-NxQ886RcGxRqkw0447NsP0DmL2irS9oFRxnzID-HhtxfcHCiXBKUglTatdoH5Ukx1yBc3-CmPVUBXH4CCfLtpWwWBYoyBgSIhNBCm1FuJlFbg0TmlwPHitPYrdG4_PZqfwuku3aRhgjrX5Sbkj5ITTnip2pq2sGhGSJV0b4H4HhA_r7M-l0Wl5rToKyIPNetbRLvkHgjXQJ90s2yvw5Zmns2gV2U6ybBUbtM90tvYfwFBsst-2VjiCS4k1tEagJ8iPlLkQ9RbPh-ycsbKBiMVY9bjaqGDo8v5u5ZmhDqJxDBm0YEMd7K_qZj4QLt_E6-tz1zfwih0Fpe2uXES-uTQpKLVBPXe5Tm7vF4MifW2AkbsNZow1z-mzPb-SEd8FQdEYqlyTNwimPp_E3sGFUb68G4p7ZlR_LwtblzVA3UOSrHc1VglmxoUxwxfKBnRcnBB2Pft3aLSptectIfvjKIE_oShtS4Bm_drlmkWH2g5Dk0hC4SuGiG3QATfWf2iN8CXXy-1s4TVslTlB4yvm1yIiRvkxTjw7rUHaOJ6CmOwG0aBSxJsVa9WDlb65IVeeIpBWSM2vlPolzXRjtOdh7zAGivbRWHiTbpzrP6zp32Xl0NmfdauQMg4DotLjCZ0BZzaBXU7woyY_iXHWWf5NJQaCWSIg2fnkodx4K-8zh9ssk_h7y-_ZsJYU945CdizytNyOS8YfwGmCbs-do329lThXACbsKB85sQzbBoRFk-wBY6phKlR1jNkgWd49B7OUMQ9wbqQujOkfJ52QbHv4-Imgbeq6WzZ58B2Ejl1BWEJ9SfP-R9eQW8U2F57rg4THFCXpeRQ0Pb1saT49vhwmZ0ZCOB1g_d_YIZo18EEK2P-IRaq5HkPX4HppUGWGmEhGa8Z21ow..%2Fdownload&amp;app=com.google.Chrome&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1"></script><script type="text/javascript" nonce="6365f816a7a3414598d6f266943" src="//local.adguard.org?ts=1773987989643&amp;name=AdGuard%20Extra&amp;type=user-script"></script></head>
+</head>
 <body>
 
 <article>
