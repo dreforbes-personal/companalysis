@@ -5,27 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Compensation Analysis Report - Dre Forbes</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&display=swap');
 
   :root {
-    /* Showcase palette */
-    --bg: #F4F5F7;
-    --surface: #FFFFFF;
-    --surface-2: #ECEDF2;
-    --text: #141422;
-    --text-secondary: #4a4a64;
-    --text-muted: #8a8aa0;
-    /* Compat shims so the rest of the CSS reads the same names */
-    --black: #141422;
-    --dark-gray: #2a2a3a;
-    --mid-gray: #4a4a64;
-    --light-gray: #8a8aa0;
-    --border: rgba(0,0,0,0.09);
-    --border-light: rgba(0,0,0,0.06);
-    --bg-page: #F4F5F7;
-    --bg-surface: #FFFFFF;
-    --accent: #3B5EC9;
-    --accent-light: rgba(59, 94, 201, 0.08);
+    --black: #111111;
+    --dark-gray: #333333;
+    --mid-gray: #666666;
+    --light-gray: #999999;
+    --border: #e5e5e5;
+    --border-light: #f0f0f0;
+    --bg-page: #ffffff;
+    --bg-surface: #fafafa;
+    --accent: #b91c1c;
+    --accent-light: rgba(185, 28, 28, 0.06);
   }
 
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -33,20 +26,12 @@
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: 'Manrope', sans-serif;
-    background: var(--bg);
-    background-image: radial-gradient(circle, rgba(0,0,0,0.04) 1px, transparent 1px);
-    background-size: 24px 24px;
-    color: var(--text);
+    font-family: 'Source Sans 3', 'Source Sans Pro', -apple-system, sans-serif;
+    background: var(--bg-page);
+    color: var(--dark-gray);
     font-size: 16px;
     line-height: 1.75;
     -webkit-font-smoothing: antialiased;
-  }
-  article {
-    background: rgba(255,255,255,0.55);
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
-    border-radius: 14px;
   }
 
   article {
@@ -64,7 +49,7 @@
     margin-bottom: 48px;
   }
   .masthead-label {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Source Sans 3', sans-serif;
     font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 4px;
@@ -73,7 +58,7 @@
     margin-bottom: 28px;
   }
   .masthead-name {
-    font-family: 'Instrument Serif', Georgia, serif;
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: clamp(2rem, 5vw, 2.8rem);
     font-weight: 700;
     color: var(--black);
@@ -81,7 +66,7 @@
     line-height: 1.15;
   }
   .masthead-title {
-    font-family: 'Instrument Serif', Georgia, serif;
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: clamp(1rem, 2.5vw, 1.3rem);
     font-weight: 400;
     font-style: italic;
@@ -89,14 +74,14 @@
     margin-top: 6px;
   }
   .masthead-meta {
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Source Sans 3', sans-serif;
     font-size: 0.85rem;
     font-weight: 400;
     color: var(--light-gray);
     margin-top: 20px;
   }
   .masthead-confidential {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Source Sans 3', sans-serif;
     font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 2px;
@@ -115,7 +100,7 @@
     border-bottom: 1px solid var(--border);
   }
   .toc-label {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Source Sans 3', sans-serif;
     font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 4px;
@@ -133,7 +118,7 @@
     margin-bottom: 8px;
   }
   .toc-list a {
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Source Sans 3', sans-serif;
     font-size: 0.95rem;
     font-weight: 400;
     color: var(--mid-gray);
@@ -158,7 +143,7 @@
     scroll-margin-top: 32px;
   }
   .section-label {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Source Sans 3', sans-serif;
     font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 3px;
@@ -172,7 +157,7 @@
     margin-bottom: 12px;
   }
   .section-heading {
-    font-family: 'Instrument Serif', Georgia, serif;
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: clamp(1.3rem, 3vw, 1.6rem);
     font-weight: 700;
     color: var(--black);
@@ -193,7 +178,7 @@
     margin-bottom: 8px;
   }
   .profile-group-label {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Source Sans 3', sans-serif;
     font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 2px;
@@ -226,14 +211,14 @@
   }
   .comp-figure { text-align: center; }
   .comp-number {
-    font-family: 'Instrument Serif', Georgia, serif;
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: clamp(1.6rem, 3.5vw, 2.2rem);
     font-weight: 700;
     color: var(--black);
     line-height: 1;
   }
   .comp-label {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Source Sans 3', sans-serif;
     font-size: 0.75rem;
     font-weight: 500;
     letter-spacing: 1px;
@@ -249,14 +234,14 @@
   }
   .skill-domain:first-of-type { border-top: 1px solid var(--border); }
   .skill-heading {
-    font-family: 'Instrument Serif', Georgia, serif;
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: 1.2rem;
     font-weight: 700;
     color: var(--black);
     margin-bottom: 4px;
   }
   .skill-benchmark {
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Source Sans 3', sans-serif;
     font-size: 0.88rem;
     font-weight: 400;
     font-style: italic;
@@ -269,7 +254,7 @@
     margin-bottom: 16px;
   }
   .skill-sub {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Source Sans 3', sans-serif;
     font-size: 0.72rem;
     font-weight: 600;
     letter-spacing: 2px;
@@ -324,13 +309,13 @@
     position: absolute;
     left: 0;
     top: 2px;
-    font-family: 'Instrument Serif', Georgia, serif;
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: 1rem;
     font-weight: 600;
     color: var(--light-gray);
   }
   .method-item h4 {
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Source Sans 3', sans-serif;
     font-size: 0.95rem;
     font-weight: 700;
     color: var(--black);
@@ -349,7 +334,7 @@
     font-size: 0.9rem;
   }
   .data-table thead th {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Source Sans 3', sans-serif;
     font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 1.5px;
@@ -380,7 +365,7 @@
     padding-top: 14px;
   }
   .data-table .salary-fig {
-    font-family: 'Instrument Serif', Georgia, serif;
+    font-family: 'Playfair Display', Georgia, serif;
     font-weight: 600;
     color: var(--black);
   }
@@ -401,7 +386,7 @@
     margin: 40px 0;
   }
   .verdict-number {
-    font-family: 'Instrument Serif', Georgia, serif;
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: clamp(2.8rem, 7vw, 4rem);
     font-weight: 800;
     color: var(--accent);
@@ -409,7 +394,7 @@
     letter-spacing: -0.02em;
   }
   .verdict-label {
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Source Sans 3', sans-serif;
     font-size: 1rem;
     font-weight: 600;
     color: var(--accent);
@@ -417,7 +402,7 @@
     letter-spacing: 0.5px;
   }
   .verdict-sub {
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Source Sans 3', sans-serif;
     font-size: 0.85rem;
     color: var(--mid-gray);
     margin-top: 8px;
@@ -459,7 +444,7 @@
   }
   .key-factor strong { color: var(--black); }
   .factor-num {
-    font-family: 'Instrument Serif', Georgia, serif;
+    font-family: 'Playfair Display', Georgia, serif;
     font-weight: 700;
     color: var(--light-gray);
     margin-right: 6px;
@@ -529,7 +514,7 @@
     margin-top: 64px;
   }
   .report-footer p {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Source Sans 3', sans-serif;
     font-size: 0.75rem;
     font-weight: 500;
     letter-spacing: 2px;
